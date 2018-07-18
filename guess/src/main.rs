@@ -17,8 +17,10 @@ fn main(){
         io::stdin().read_line(&mut guess)
             .expect("読み込み失敗!");
 
-        let guess: u32 = guess.trim().parse()
-            .expect("数字を入力してください!");
+        let guess: u32 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => continue,
+        };
 
         println!("予想した数字: {}", guess);
 
