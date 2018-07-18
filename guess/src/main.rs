@@ -19,7 +19,10 @@ fn main(){
 
         let guess: u32 = match guess.trim().parse() {
             Ok(num) => num,
-            Err(_) => continue,
+            Err(_) => {
+                println!("数字を入力してください！！");
+                continue
+            },
         };
 
         println!("予想した数字: {}", guess);
