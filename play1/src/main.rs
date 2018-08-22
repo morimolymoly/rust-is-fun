@@ -6,6 +6,10 @@ fn add(a: i32, b: i32) -> i32 {
     a + b
 }
 
+fn print_hello(name: String) {
+    println!("Hello, {}", name);
+}
+
 fn main() {
     println!("Hello, world!");
     let cha = '👌';
@@ -31,4 +35,13 @@ fn main() {
         println!("inside block {}", block);
     }
     //println!("{}", block);
+
+    let tup: (String, i32) = ("MMM".to_string(), 20);
+    println!("{}",tup.0);
+
+    print_hello("melo".to_string());
+
+    for num in 0..5 {
+        println!("{}", num);
+    }
 }
