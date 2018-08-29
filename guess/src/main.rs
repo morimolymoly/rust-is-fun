@@ -4,6 +4,21 @@ use std::io;
 use std::cmp::Ordering;
 use rand::Rng;
 
+pub struct Guess {
+    value: i32
+}
+
+impl Guess {
+    pub fn new(value: i32) ->  Guess {
+        if value < 1 || value > 100 {
+            panic!("数字は1から100までの整数にしてください！！")
+        }
+        Guess {
+            value
+        }
+    }
+}
+
 fn main(){
     println!("数あてゲーム!");
 
@@ -12,22 +27,22 @@ fn main(){
     loop {
         println!("予想を入力して！");
 
-        let mut guess = String::new();
+        let mut guess_str = String::new();
 
-        io::stdin().read_line(&mut guess)
+        io::stdin().read_line(&mut guess_str)
             .expect("読み込み失敗!");
 
-        let guess: u32 = match guess.trim().parse() {
-            Ok(num) => num,
+        let guess: Guess = match guess_str.trim().parse() {
+            Ok(num) => Guess::new(num),
             Err(_) => {
                 println!("数字を入力してください！！");
                 continue
             },
         };
 
-        println!("予想した数字: {}", guess);
+        println!("予想した数字: {}", guess.value);
 
-        match guess.cmp(&secret_number) {
+        match guess.value.cmp(&secret_number) {
             Ordering::Less => println!("小さスギィッ!!"),
             Ordering::Greater => println!("イキスギィッ!!"),
             Ordering::Equal => {
