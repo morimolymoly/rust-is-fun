@@ -19,6 +19,16 @@ impl Guess {
     }
 }
 
+#[cfg(test)]
+mod test {
+    use super::*;
+    #[test]
+    #[should_panic]
+    fn new_invalid_guess() {
+        Guess::new(400);
+    }
+}
+
 fn main(){
     println!("数あてゲーム!");
 
